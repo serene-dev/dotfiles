@@ -1,0 +1,105 @@
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+
+call plug#begin()
+Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/fern.vim'
+"Plug 'scrooloose/nerdtree'
+Plug 'joshdick/onedark.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'christoomey/vim-system-copy'
+Plug 'jiangmiao/auto-pairs'
+Plug 'rust-lang/rust.vim'
+Plug 'ekalinin/dockerfile.vim'
+"Plug 'dense-analysis/ale'
+
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+" Python autocompletion
+" Plug 'davidhalter/jedi-vim'
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+
+" Ruby on Rails
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+call plug#end()
+
+" let g:deoplete#enable_at_startup = 1
+" Python autocompletion support: pip3 install neovim
+" let g:jedi#environment_path = "/usr/bin/python3"
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+nnoremap <C-p> :<C-u>FZF<CR>
+nnoremap <C-g> :<C-u>Rg<CR>
+
+filetype on
+filetype plugin indent on
+filetype indent on
+syntax enable
+colorscheme onedark
+
+set ruler
+set number
+set nowrap
+set number relativenumber
+set cursorline
+set mouse=a
+
+set ts=2  " Tabs are 2 spaces
+set bs=2  " Backspace over everything in insert mode
+set shiftwidth=2  " Tabs under smart indent
+set nocp incsearch
+set cinoptions=:0,p0,t0
+set cinwords=if,else,while,do,for,switch,case
+set formatoptions=tcqr
+set cindent autoindent smarttab expandtab
+set spell spelllang=en_us
+set ignorecase
+
+" Highlight unwanted spaces
+set list listchars=tab:»·,trail:·
+
+" Toggle NerdTree by pressing "-"
+"map - :NERDTreeToggle <CR>
+map - :Fern . -drawer -toggle <CR>
+
+" disable arrow keys
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
+noremap <Right> <Nop>
+
+" alt+backspace to delete words
+imap <Esc><BS> <C-w>
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Create a new tab using "tn"
+"nnoremap tn : tabnew<CR>
+" Move one tab right using "tk"
+"nnoremap tk : tabnext<CR>
+" Move one tab right using "tj"
+"nnoremap tj : tabprev<CR>
+" Only show current tab "to"
+"nnoremap to : tabo<CR>
+
